@@ -1,0 +1,31 @@
+h1 {
+  color: green;
+  text-align: center;
+font-family: 'Bungee Shade', cursive;
+}
+
+body {
+  color: green;
+  font-family: 'Bungee', cursive;
+}
+table {
+  width: 80%;
+  border-spacing: 0.5rem;
+  border: 1px solid black;
+  margin-left: 10%;
+}
+
+td {
+  padding-left: 25px;
+  border: 1px solid black;
+}
+
+tr.goodBonus:hover {
+  background-color: green;
+  color: gold;
+}
+
+tr.badBonus:hover {
+  background-color: red;
+  color: black;
+}

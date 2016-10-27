@@ -59,3 +59,26 @@ function calcBonus(employee) {
 
   return empBonus;
 };
+
+var bonusTable = "";
+
+bonusTable += "<table><tr><th>Name</th><th>Bonus Percentage</th><th>Total Compensation</th><th>Total Bonus</th></tr>"
+empBonuses.forEach(function(empBonuses) {
+  var badBonus = "class=\"badBonus\"";
+  badBonus = empBonuses[1] === 0 ? "class=\"badBonus\"" : "class=\"goodBonus\"";
+  bonusTable += "<tr " + badBonus + "><td>" + empBonuses[0] +
+      "</td>" +
+      "<td>" +
+        empBonuses[1] +
+      "</td>" +
+      "<td>" +
+        empBonuses[2] +
+      "</td>" +
+      "<td>" +
+        empBonuses[3]
+      "</td>" +
+    "</tr>"
+});
+bonusTable += "</table>";
+
+document.getElementById('bonusTable').innerHTML = bonusTable;
