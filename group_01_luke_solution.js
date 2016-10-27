@@ -9,22 +9,34 @@ var mayella = ["Mayella", "89068", "35000", 2];
 var employees = [atticus, jem, boo, scout, robert, mayella];
 
 // for loop to iterate through employees array
-for (var i = 0; i < employees.length; i++) {
-	var employee = employees[i];
+// for (var i = 0; i < employees.length; i++) {
+// 	var employee = employees[i];
+// 	console.log(bonusArrayBuilder(employee));
+// };
+
+// forEach method to iterate through employees array
+employees.forEach(function(employee){
 	console.log(bonusArrayBuilder(employee));
-};
+});
 
 // builds bonus array
 function bonusArrayBuilder(employee){
-	var employeeName = employee[0];
-	var employeeNumber = employee[1];
-	var employeeSalary = employee[2];
+	var employeeName 				= employee[0];
+	var employeeNumber 			= employee[1];
+	var employeeSalary 			= parseInt(employee[2]);
 	var employeePerformance = employee[3];
 
-	var bonusPercentage = basePerformanceBonusCalculator(employeePerformance);
-	bonusPercentage += employeeLongevityBonus(employeeNumber);
-	bonusPercentage -= maxSalaryDeduction(employeeSalary);
-	return [employeeName, bonusPercentage];
+	var bonusPercentage =  basePerformanceBonusCalculator(employeePerformance);
+			bonusPercentage += employeeLongevityBonus(employeeNumber);
+			bonusPercentage -= maxSalaryDeduction(employeeSalary);
+			bonusPercentage =  outliers(bonusPercentage);
+
+	var bonus 						= employeeSalary * bonusPercentage;
+	var totalCompensation = employeeSalary + bonus;
+
+	var roundedBonus 			= Math.round(bonus);
+
+	return [employeeName, bonusPercentage, totalCompensation, roundedBonus];
 }
 
 // calculate bonus percentage based on employee's performance
@@ -33,7 +45,7 @@ function basePerformanceBonusCalculator(employeePerformance){
 	switch (employeePerformance) {
 		case 3: baseBonusPercentage = .04; break;
 		case 4: baseBonusPercentage = .06; break;
-		case 5: baseBonusPercentage = .1; break;
+		case 5: baseBonusPercentage =  .1; break;
 	}
 	return baseBonusPercentage;
 }
@@ -50,4 +62,11 @@ function maxSalaryDeduction(employeeSalary){
 	var deduction = 0;
 	if(employeeSalary > 65000){deduction = .01};
 	return deduction;
+}
+
+// function reigns in outliers
+function outliers(bonusPercentage){
+	bonusPercentage = Math.min(bonusPercentage, .13);
+	bonusPercentage = Math.max(bonusPercentage,   0);
+	return bonusPercentage;
 }
