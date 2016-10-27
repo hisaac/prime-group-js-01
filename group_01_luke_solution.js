@@ -22,8 +22,8 @@ function bonusArrayBuilder(employee){
 	var employeePerformance = employee[3];
 
 	var bonusPercentage = basePerformanceBonusCalculator(employeePerformance);
-
-
+	bonusPercentage += employeeLongevityBonus(employeeNumber);
+	bonusPercentage -= maxSalaryDeduction(employeeSalary);
 	return [employeeName, bonusPercentage];
 }
 
@@ -36,4 +36,18 @@ function basePerformanceBonusCalculator(employeePerformance){
 		case 5: baseBonusPercentage = .1; break;
 	}
 	return baseBonusPercentage;
+}
+
+// calculate extra bonus based on employee's employee number
+function employeeLongevityBonus(employeeNumber){
+	var longevityBonus = 0;
+	if(employeeNumber.length === 4){longevityBonus += .05;}
+	return longevityBonus;
+}
+
+// calculate bonus deduction based on salary amount
+function maxSalaryDeduction(employeeSalary){
+	var deduction = 0;
+	if(employeeSalary > 65000){deduction = .01};
+	return deduction;
 }
