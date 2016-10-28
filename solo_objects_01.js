@@ -9,11 +9,15 @@ var mayella = ["Mayella", "89068"	, "35000"	,	2];
 var employees = [atticus, jem, boo, scout, robert, mayella];
 var employeeObjects = []; // array of employee objects
 
-var empBonuses = []; // bonuses of all employees
+var employeeBonuses = []; // bonuses of all employees
 
 // run through each item in employees array and construct an object
 employees.forEach(function(employee){
 	employeeObjects.push(new HumanResource(employee));
+});
+
+employeeObjects.forEach(function(employee){
+	console.log(bonusArrayBuilder(employee));
 });
 
 // convert employee array into an object
@@ -22,4 +26,21 @@ function HumanResource(employee){
 	this.employeeNumber = parseInt(employee[1]);
 	this.baseSalary 		= parseInt(employee[2]);
 	this.reviewScore 		= parseInt(employee[3]);
+}
+
+function bonusArrayBuilder(employee){
+	var employeeName = employee.name;
+	var employeeNumber = employee.employeeNumber;
+	var baseSalary = employee.baseSalary;
+	var reviewScore = employee.reviewScore;
+}
+
+function baseBonusCalculator(reviewScore){
+	var baseBonus = 0;
+	switch(reviewScore){
+		case 3: baseBonus = .04; break;
+		case 4: baseBonus = .06; break;
+		case 5: baseBonus = .1; break;
+	}
+	return baseBonus;
 }
