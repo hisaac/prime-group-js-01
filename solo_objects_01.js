@@ -59,3 +59,10 @@ function highSalaryDeduction(baseSalary){
 	if(baseSalary > 65000){deduction = .01};
 	return deduction;
 }
+
+// keep all bonuses between 0% and 13%
+function outliers(bonusPercentage){
+	bonusPercentage = Math.min(bonusPercentage, .13);
+	bonusPercentage = Math.max(bonusPercentage, 0);
+	return bonusPercentage;
+}
