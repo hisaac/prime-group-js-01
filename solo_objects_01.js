@@ -1,14 +1,14 @@
 // declare variables
-var atticus			= ["Atticus",	"2405",		"47000",	3];
-var jem				= ["Jem",		"62347",	"63500",	4];
-var boo				= ["Boo",		"11435",	"54000",	3];
-var scout			= ["Scout",		"6243",		"74750",	5];
-var robert			= ["Robert",	"26835",	"66000",	1];
-var mayella			= ["Mayella",	"89068",	"35000",	2];
-var employees		= [atticus, jem, boo, scout, robert, mayella];
-var employeeObjects	= []; // array of employee objects
-var employeeBonuses	= []; // bonuses of all employees
-var bonusTable		= ""; // html table to inject into web page
+var atticus = ["Atticus", "2405", "47000", 3];
+var jem = ["Jem", "62347", "63500", 4];
+var boo = ["Boo", "11435", "54000", 3];
+var scout = ["Scout", "6243", "74750", 5];
+var robert = ["Robert", "26835", "66000", 1];
+var mayella = ["Mayella", "89068", "35000", 2];
+var employees = [atticus, jem, boo, scout, robert, mayella];
+var employeeObjects = []; // array of employee objects
+var employeeBonuses = []; // bonuses of all employees
+var bonusTable = ""; // html table to inject into web page
 
 // run through each item in employees array and construct an object
 employees.forEach(function(employee){
@@ -24,10 +24,10 @@ employeeObjects.forEach(function(employee){
 employeeObjects.forEach(function(employee){
 	var employee = bonusArrayBuilder(employee);
 	console.log(
-		" | Employee Name: " 	+ employee[0] +
-		" | Bonus Percentage: "	+ employee[1] + "%" +
-		" | Bonus Amount: $" 	+ employee[3] +
-		" | Final Salary: $" 	+ employee[2] + "|"
+		" | Employee Name: " + employee[0] +
+		" | Bonus Percentage: " + employee[1] + "%" +
+		" | Bonus Amount: $" + employee[3] +
+		" | Final Salary: $" + employee[2] + "|"
 	);
 });
 
@@ -35,18 +35,18 @@ buildTable(employeeBonuses);
 
 // convert employee array into an object
 function HumanResource(employee){
-	this.name 				= employee[0];
-	this.employeeNumber 	= parseInt(employee[1]);
-	this.baseSalary 		= parseInt(employee[2]);
-	this.reviewScore 		= parseInt(employee[3]);
+	this.name = employee[0];
+	this.employeeNumber = parseInt(employee[1]);
+	this.baseSalary = parseInt(employee[2]);
+	this.reviewScore = parseInt(employee[3]);
 }
 
 // build employeeBonuses array
 function bonusArrayBuilder(employee){
-	var employeeName 		= employee.name;
-	var employeeNumber 		= employee.employeeNumber;
-	var baseSalary 			= employee.baseSalary;
-	var reviewScore 		= employee.reviewScore;
+	var employeeName = employee.name;
+	var employeeNumber = employee.employeeNumber;
+	var baseSalary = employee.baseSalary;
+	var reviewScore = employee.reviewScore;
 
 	var bonusPercentage = outliers(
 		baseBonusCalculator(reviewScore)
@@ -54,9 +54,9 @@ function bonusArrayBuilder(employee){
 		- highSalaryDeduction(baseSalary)
 	);
 
-	var bonusAmount 		= baseSalary * bonusPercentage;
-	var totalCompensation	= baseSalary + bonusAmount;
-	var roundedBonus 		= Math.round(bonusAmount);
+	var bonusAmount = baseSalary * bonusPercentage;
+	var totalCompensation = baseSalary + bonusAmount;
+	var roundedBonus = Math.round(bonusAmount);
 
 	return [employeeName, bonusPercentage, totalCompensation, roundedBonus];
 }
@@ -67,7 +67,7 @@ function baseBonusCalculator(reviewScore){
 	switch(reviewScore){
 		case 3: baseBonus = .04; break;
 		case 4: baseBonus = .06; break;
-		case 5: baseBonus =  .1; break;
+		case 5: baseBonus = .1; break;
 	}
 	return baseBonus;
 }
