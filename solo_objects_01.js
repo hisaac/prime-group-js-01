@@ -16,11 +16,20 @@ employees.forEach(function(employee){
 	employeeObjects.push(new HumanResource(employee));
 });
 
+// employeeObjects.forEach(function(employee){
+// 	console.log("Arrays: ", bonusArrayBuilder(employee));
+// });
+
 employeeObjects.forEach(function(employee){
-	console.log(bonusArrayBuilder(employee));
+	var employee = bonusArrayBuilder(employee);
+	console.log(
+		"Employee Name: " + employee[0] +
+		" | Bonus Percentage: " + employee[1] + "%" +
+		" | Bonus Amount: $" + employee[3] +
+		" | Final Salary: $" + employee[2]
+	);
 });
 
-// console.log(bonusPercentage);
 
 // convert employee array into an object
 function HumanResource(employee){
