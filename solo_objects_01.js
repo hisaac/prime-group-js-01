@@ -20,6 +20,8 @@ employeeObjects.forEach(function(employee){
 	console.log(bonusArrayBuilder(employee));
 });
 
+// console.log(bonusPercentage);
+
 // convert employee array into an object
 function HumanResource(employee){
 	this.name 					= employee[0];
@@ -28,11 +30,24 @@ function HumanResource(employee){
 	this.reviewScore 		= parseInt(employee[3]);
 }
 
+// build employeeBonuses array
 function bonusArrayBuilder(employee){
-	var employeeName = employee.name;
-	var employeeNumber = employee.employeeNumber;
-	var baseSalary = employee.baseSalary;
-	var reviewScore = employee.reviewScore;
+	var employeeName 		= employee.name;
+	var employeeNumber 	= employee.employeeNumber;
+	var baseSalary 			= employee.baseSalary;
+	var reviewScore 		= employee.reviewScore;
+
+	var bonusPercentage = outliers(
+			baseBonusCalculator(reviewScore)
+		+ longevityBonus(employeeNumber)
+		- highSalaryDeduction(baseSalary)
+	);
+
+	var bonusAmount 			= baseSalary * bonusPercentage;
+	var totalCompensation = baseSalary + bonusAmount;
+	var roundedBonus 			= Math.round(bonusAmount);
+
+	return [employeeName, bonusPercentage, totalCompensation, roundedBonus];
 }
 
 // calculate base bonus percentage based on employee review score
@@ -41,7 +56,7 @@ function baseBonusCalculator(reviewScore){
 	switch(reviewScore){
 		case 3: baseBonus = .04; break;
 		case 4: baseBonus = .06; break;
-		case 5: baseBonus = .1; break;
+		case 5: baseBonus =  .1; break;
 	}
 	return baseBonus;
 }
@@ -49,7 +64,7 @@ function baseBonusCalculator(reviewScore){
 // add extra bonus based on employee longevity
 function longevityBonus(employeeNumber){
 	var longevityBonus = 0;
-	if(employeeNumber.length === 4){longevityBonus += .05;}
+	if(employeeNumber.toString().length === 4){longevityBonus += .05;}
 	return longevityBonus;
 }
 
