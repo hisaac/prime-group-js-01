@@ -52,3 +52,10 @@ function longevityBonus(employeeNumber){
 	if(employeeNumber.length === 4){longevityBonus += .05;}
 	return longevityBonus;
 }
+
+// subtract bonus based on base salary amount
+function highSalaryDeduction(baseSalary){
+	var deduction = 0;
+	if(baseSalary > 65000){deduction = .01};
+	return deduction;
+}
