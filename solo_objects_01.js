@@ -35,6 +35,7 @@ function bonusArrayBuilder(employee){
 	var reviewScore = employee.reviewScore;
 }
 
+// calculate base bonus percentage based on employee review score
 function baseBonusCalculator(reviewScore){
 	var baseBonus = 0;
 	switch(reviewScore){
@@ -43,4 +44,11 @@ function baseBonusCalculator(reviewScore){
 		case 5: baseBonus = .1; break;
 	}
 	return baseBonus;
+}
+
+// add extra bonus based on employee longevity
+function longevityBonus(employeeNumber){
+	var longevityBonus = 0;
+	if(employeeNumber.length === 4){longevityBonus += .05;}
+	return longevityBonus;
 }
