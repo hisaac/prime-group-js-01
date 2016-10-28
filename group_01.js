@@ -30,11 +30,11 @@ function calcBonus(employee) {
 
 	// check employee's rating, and set bonus percentage based on that
 	switch (employee[3]) {
-    case 1, 2: bonusPercent = 0; break;
-    case 3: bonusPercent = .04; break;
-    case 4: bonusPercent = .06; break;
-    case 5: bonusPercent = .1; break;
-    default: bonusPercent = 0;
+    case 1, 2: 	bonusPercent = 0		; 		break;
+    case 3: 		bonusPercent = 0.04	; 		break;
+    case 4: 		bonusPercent = 0.06	; 		break;
+    case 5: 		bonusPercent = 0.1	; 		break;
+    default: 		bonusPercent = 0		;
   };
 
 	// check if employee number is 4 digits long, and add to bonus % if true
@@ -67,8 +67,8 @@ bonusTable +=
 	"<table>" +
 		"<tr>" +
 			"<th>Name</th>" +
-			"<th>Bonus Percentage</th>" +
-			"<th>Total Compensation</th>" +
+			"<th>Bonus</th>" +
+			"<th>Total Comp.</th>" +
 			"<th>Total Bonus</th>" +
 		"</tr>";
 
@@ -79,10 +79,10 @@ empBonuses.forEach(function(empBonuses) {
 
 bonusTable +=
 	"<tr " + badBonus + ">" +
-		"<td>" + empBonuses[0] + "</td>" +
-    "<td>" + empBonuses[1] + "</td>" +
-    "<td>" + empBonuses[2] + "</td>" +
-    "<td>" + empBonuses[3] + "</td>" +
+		"<td>" 	+ empBonuses[0] + "</td>" +
+    "<td>" 	+ empBonuses[1] + "%</td>" +
+    "<td>$" + empBonuses[2] + "</td>" +
+    "<td>$" + empBonuses[3] + "</td>" +
   "</tr>";
 });
 
